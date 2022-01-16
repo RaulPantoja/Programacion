@@ -1,0 +1,17 @@
+package modelo;
+
+public class Guerrero extends Personaje{
+	
+	public Guerrero() {
+		super();
+	}
+	public Guerrero(String nombre, int ataque, int defensa, int vida) {
+		super(nombre, ataque, defensa, vida);
+	}
+
+	public int atacarEspecial() {
+		int poderAtaqueEspecial=-1;
+		poderAtaqueEspecial=ataque*2;
+		return poderAtaqueEspecial;
+	}
+}
