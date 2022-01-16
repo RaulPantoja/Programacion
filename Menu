@@ -1,0 +1,38 @@
+package vista;
+
+import java.util.Scanner;
+
+public class Menu {
+	
+	
+	
+	public static void comienzoJuego() {
+		System.out.println("Bievenido al juego escoge a tu personaje\n");
+	}
+	
+	public static void inicioPelea() {
+		System.out.println("Pelea de ");
+	}
+	public static void escogePersonaje() {
+		System.out.println("--Escoge tu personaje de esta lista-- \n");
+		System.out.println("1: Thor");
+		System.out.println("2: Wanda");
+		System.out.println("3: Hulk");
+		System.out.println("4: Doctor Strange");
+		System.out.println("5: Groot\n");
+		System.out.println("Elije una opcion: ");
+	}
+
+	public static void avanzar() {
+		Scanner s=new Scanner(System.in);
+		System.out.println("Pulsa tecla ENTER para avanzar");
+		s.nextLine();
+	}
+	public static int combate() {
+		Scanner s=new Scanner(System.in);
+		System.out.println("--Elije la accion que quieras hacer--\n");
+		System.out.println("1.Ataca");
+		System.out.println("2.Defiende");
+		return Integer.parseInt(s.nextLine());
+	}
+}
