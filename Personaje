@@ -72,7 +72,7 @@ public class Personaje {
 	}
 	public int defender() {
 		System.out.println(nombre+" se ha defendido\n");
-		int dañoBloqueado = aleatorio.nextInt(ataque)+1;
+		int dañoBloqueado = aleatorio.nextInt(defensa)+1;
 		return dañoBloqueado;
 	}
 	
