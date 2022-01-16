@@ -1,0 +1,108 @@
+package controlador;
+
+import java.util.Random;
+import java.util.Scanner;
+
+import modelo.Personaje;
+import vista.Menu;
+
+public class Juego {
+
+	public static void main(String[] args) {
+		Scanner teclado=new Scanner(System.in);
+		Random aleatorio = new Random(999);
+		Personaje arrayPersonajes[]=new Personaje[5];
+		boolean muerto=true;
+		int opcion=-1;
+		
+		Menu.comienzoJuego();
+		Menu.escogePersonaje();
+		opcion=teclado.nextInt();
+		
+			switch (opcion) {
+			case 1:
+				System.out.println("Has seleccionado a Thor");
+				break;
+			
+			case 2:
+				System.out.println("Has seleccionado a Wanda");
+				break;
+			case 3:
+				System.out.println("Has seleccionado a Hulk");
+				break;
+			case 4:
+				System.out.println("Has seleccionado a Doctor Strange");
+				break;
+			case 5:
+				System.out.println("Has seleccionado a Groot");
+			default:
+				System.out.println("No has seleccionado a nadie");
+			}
+		Menu.avanzar();
+		arrayPersonajes[0] = new Personaje ("Thor",8,5,30);
+		arrayPersonajes[1] = new Personaje ("Wanda",9,2,25);
+		arrayPersonajes[2] = new Personaje ("Hulk",3,7,40);
+		arrayPersonajes[3] = new Personaje ("Doctor Strange",6,3,30);
+		arrayPersonajes[4] = new Personaje ("Groot",4,9,35);
+		
+		while (arrayPersonajes[0].getVida()>0 && arrayPersonajes[1].getVida()>0) {
+			System.out.println("----*DETALLES PELEA*----\n");
+			System.out.println("Pelea entre "+arrayPersonajes[0].getNombre()+" y "+arrayPersonajes[1].getNombre()+"\n");
+			int ataqueRonda1=0;
+			int defensaRonda1=0;
+			int ataqueRonda2=0;
+			int defensaRonda2=0;
+			
+			
+			int accionp1=Menu.combate();
+			switch (accionp1) {
+				case 1:
+					ataqueRonda1 = arrayPersonajes[0].atacar();
+					System.out.println("El ataque de " +arrayPersonajes[0].getNombre()+ " es de: "
+							+ataqueRonda1);
+					break;
+				case 2:
+					defensaRonda1 = arrayPersonajes[0].defender();
+					System.out.println("La defensa de "+arrayPersonajes[0].getNombre()+
+							" ha aumentado en un: "+defensaRonda1);
+					break;
+				default:
+					System.out.println("Pierdes turno");
+			}
+			
+			switch (accionPC()) {
+			case 1:
+				ataqueRonda2=arrayPersonajes[1].atacar();
+				break;
+			case 2:
+				defensaRonda2=arrayPersonajes[1].defender();
+			}
+			
+			
+			int dañoRecibido1=ataqueRonda2-defensaRonda1;
+			int dañoRecibido2=ataqueRonda1-defensaRonda2;
+			
+			if (dañoRecibido1>0){
+				System.out.println(arrayPersonajes[0].getNombre()+" recibe daño\n");
+				System.out.println(" Y pierde "+dañoRecibido1+" de vida \n");
+				arrayPersonajes[0].vidaPerdida(dañoRecibido1);
+				if(arrayPersonajes[0].getVida()<=0) {
+					System.out.println("El personaje "+arrayPersonajes[0].getNombre()+" ha muerto\n");
+				}
+				
+				if (dañoRecibido2>0) {
+					System.out.println(arrayPersonajes[1].getNombre()+" recibe daño\n");
+					System.out.println(" Y pierde "+dañoRecibido2+" de vida \n");
+					arrayPersonajes[1].vidaPerdida(dañoRecibido2);
+					if(arrayPersonajes[1].getVida()<=0) {
+						System.out.println("El personaje "+arrayPersonajes[1].getNombre()+" ha muerto\n");
+					}
+				}
+			}
+		}
+	}
+	private static int accionPC() {
+		Random aleatorio=new Random();
+		return aleatorio.nextInt(3)+1;
+	}
+}
