@@ -1,0 +1,82 @@
+	package modelo;
+
+import java.util.Random;
+import java.util.Scanner;
+
+
+public class Personaje {
+	Scanner s = new Scanner(System.in);
+	Random aleatorio = new Random(999);
+	private String nombre;
+	public int ataque, defensa,vida, poderDefensaEspecial, poderAtaqueEspecial;
+	
+	
+	
+	public Personaje() {
+		nombre="";
+		ataque=0;
+		defensa=0;
+		vida=0;
+		
+		
+		
+	}
+	public Personaje(String nombre, int ataque, int defensa ,int vida) {
+		this.nombre=nombre;
+		this.ataque=ataque;
+		this.defensa=defensa;
+		this.vida=vida;
+	}
+	
+	
+	public String getNombre() {
+		return nombre;
+	}
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+	public int getVida() {
+		return vida;
+	}
+	public void setVida(int vida) {
+		this.vida = vida;
+	}
+	public int getAtaque() {
+		return ataque;
+	}
+	public void setAtaque(int ataque) {
+		this.ataque = ataque;
+	}
+	public int getDefensa() {
+		return defensa;
+	}
+	public void setDefensa(int defensa) {
+		this.defensa = defensa;
+	}
+	
+	public void vidaPerdida(int daño) {
+		vida -=daño;
+		if (vida <0) {
+			vida=0;
+		}
+	}
+	
+	
+	
+	
+	public int atacar() {
+		System.out.println(nombre+" realiza un ataque\n");
+		int dañoRealizado = aleatorio.nextInt(ataque)+1; //este +1 sirve para que el ataque nunca sea 0
+													//y que como minimo haga 1 de daño
+		return dañoRealizado;
+	}
+	public int defender() {
+		System.out.println(nombre+" se ha defendido\n");
+		int dañoBloqueado = aleatorio.nextInt(ataque)+1;
+		return dañoBloqueado;
+	}
+	
+	public void dañoRecibido(int vida) {
+		this.vida -=vida; //restamos el valor que nos pasan nos lo quitamos a nuestra salud
+	}
+}
