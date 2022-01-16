@@ -1,0 +1,16 @@
+package modelo;
+
+public class Mago extends Personaje{
+	public Mago() {
+		super();
+	}
+	public Mago (String nombre, int ataque, int defensa, int vida) {
+		super(nombre, ataque, defensa, vida);
+	}
+	public int defenderEspecial() {
+		int poderDefensaEspecial=-1;
+		poderDefensaEspecial=defensa*2;
+		return poderDefensaEspecial;
+	}
+	
+}
